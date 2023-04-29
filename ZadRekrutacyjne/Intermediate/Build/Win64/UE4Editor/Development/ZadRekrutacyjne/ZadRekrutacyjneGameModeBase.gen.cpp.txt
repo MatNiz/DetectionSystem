@@ -1,0 +1,9 @@
+D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Development\ZadRekrutacyjne\Definitions.ZadRekrutacyjne.h
+D:\Programy\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\Programy\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+D:\Projekty\UE5\ZadRekrutacyjne\Source\ZadRekrutacyjne/ZadRekrutacyjneGameModeBase.h
+D:\Programy\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\Programy\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\Programy\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\Programy\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Inc\ZadRekrutacyjne\ZadRekrutacyjneGameModeBase.generated.h
