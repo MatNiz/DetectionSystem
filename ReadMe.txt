@@ -1,4 +1,4 @@
-Requirements:
+Requirements for UE4 junior programmer recruitment task
 Create a following system :
 In a random place on the level, place exactly one actor (seeker), who will be detecting other actors (wanted) on the map. After the detection, the seeker informs wanteds about the fact that they have been detected, and prints onto the screen (in any form) the distance from the seeker in order from the closest to the farthest. Additionally, the seeker picks two found actors, the closest and the farthest, and informs them accordingly about the distance. 
 Features of the seeker mechanism :
