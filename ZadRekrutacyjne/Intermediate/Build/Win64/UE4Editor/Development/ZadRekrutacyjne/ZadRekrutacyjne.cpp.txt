@@ -1,2 +1,0 @@
-D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Development\ZadRekrutacyjne\Definitions.ZadRekrutacyjne.h
-D:\Projekty\UE5\ZadRekrutacyjne\Source\ZadRekrutacyjne\ZadRekrutacyjne.h

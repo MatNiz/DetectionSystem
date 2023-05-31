@@ -1,5 +1,0 @@
-D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Development\ZadRekrutacyjne\Definitions.ZadRekrutacyjne.h
-D:\Projekty\UE5\ZadRekrutacyjne\Source\ZadRekrutacyjne\Wanted.h
-D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Inc\ZadRekrutacyjne\Wanted.generated.h
-D:\Projekty\UE5\ZadRekrutacyjne\Source\ZadRekrutacyjne\WantedComponent.h
-D:\Projekty\UE5\ZadRekrutacyjne\Intermediate\Build\Win64\UE4Editor\Inc\ZadRekrutacyjne\WantedComponent.generated.h
