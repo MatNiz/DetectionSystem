@@ -15,27 +15,9 @@ public:
 	// Sets default values for this character's properties
 	ACamera();
 
-	bool isSeekerPresent = 0;
-
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<class AWanted> MyWanted;
-
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<class ASeeker> MySeeker;
-
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	void SpawnWanted();
-
-	void SpawnSeeker();
-
-	void MoveForward(float Value);
-
-	void MoveRight(float Value);
-
 
 
 public:
@@ -44,5 +26,19 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<AActor> Wanted;
+	UPROPERTY(EditDefaultsOnly, Category = "References")
+		TSubclassOf<AActor> Seeker;
+
+
+	bool isSeekerPresent = 0;
+
+	void SpawnWanted();
+	void SpawnSeeker();
+	void MoveForward(float Value);
+	void MoveRight(float Value);
 
 };

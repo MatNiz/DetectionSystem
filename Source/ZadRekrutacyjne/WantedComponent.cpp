@@ -10,7 +10,6 @@ UWantedComponent::UWantedComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 // Called when the game starts
@@ -29,11 +28,11 @@ void UWantedComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UWantedComponent::OnDetected()
 {
-	isDetected = 1;
+	IsDetected = 1;
 }
 
 void UWantedComponent::ChangeDistance(float Distance)
 {
 	UE_LOG(LogTemp, Log, TEXT("Informed about distance"));
-	distanceFromSeeker = Distance;
+	DistanceFromSeeker = Distance;
 }

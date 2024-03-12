@@ -11,8 +11,7 @@
 // Sets default values for this component's properties
 USeekerComponent::USeekerComponent()
 {
-	DetectionDistance = 700.f;
-	DetectionInterval = 1.5f;
+
 }
 
 // Called when the game starts
@@ -20,9 +19,9 @@ void USeekerComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Start the detection timer
-	GetWorld()->GetTimerManager().SetTimer(DetectionTimerHandle, this, &USeekerComponent::DetectWantedActors, DetectionInterval, true);
 
+	FTimerHandle Timer;
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &USeekerComponent::DetectWantedActors, DetectionIntervalInSeconds, true);
 }
 
 // Called every frame
@@ -35,15 +34,13 @@ void USeekerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void USeekerComponent::DetectWantedActors()
 {
-	// Clear the array of detected actors
-	DetectedActors.Empty();
-
-	// Get all actors with the WantedComponent
 	TArray<AActor*> WantedActors;
+	TArray<AActor*> DetectedActors;
+
 
 	std::vector <float> distancesFromWanteds;
 
-	//collision params
+
 	FHitResult OutHit;
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.bTraceComplex = true;
@@ -66,25 +63,21 @@ void USeekerComponent::DetectWantedActors()
 	FString DetectedActorsString = TEXT("Before sort:");
 
 
-	// Iterate over each wanted actor and check if it's within the detection range
 	for (AActor* WantedActor : WantedActors)
 	{
 		FVector WantedLocation = WantedActor->GetActorLocation();
 
 		float DistanceToWantedActor = (WantedLocation - SeekerLocation).Size();
 
-		//checking collisions
 		CollisionParams.AddIgnoredActor(WantedActor);
 		GetWorld()->LineTraceSingleByChannel(OutHit, WantedLocation, SeekerLocation, ECC_Visibility, CollisionParams);
 
 
 		if (DistanceToWantedActor <= DetectionDistance && !OutHit.bBlockingHit)
 		{
-			// Add the wanted actor to the array of detected actors
 			DetectedActors.Add(WantedActor);
 			distancesFromWanteds.push_back(DistanceToWantedActor);
 
-			//inform about detection
 			AActor* TempActor = DetectedActors.Last();
 			UWantedComponent* ClosestWantedComponent = TempActor->FindComponentByClass<UWantedComponent>();
 			ClosestWantedComponent->OnDetected();
@@ -93,17 +86,12 @@ void USeekerComponent::DetectWantedActors()
 		}
 	}
 
-//	UE_LOG(LogTemp, Log, TEXT("%s\n\n\n"), *DetectedActorsString);
-
-
-	// Check if there are any detected actors
 	if (DetectedActors.Num() == 0)
 	{
 		return;
 	}
 	else
 	{
-		
 		auto max_element_iter = std::max_element(distancesFromWanteds.begin(), distancesFromWanteds.end());
 		int max_element_index = std::distance(distancesFromWanteds.begin(), max_element_iter);
 		float max_value = *max_element_iter;
@@ -113,7 +101,6 @@ void USeekerComponent::DetectWantedActors()
 		float min_value = *min_element_iter;
 
 		//UE_LOG(LogTemp, Log, TEXT("najdalszy:%.2f, najdalszy id: %i, najblizszy:%.2f, najblizszyid:%i"), max_value, max_element_index + 1, min_value, min_element_index + 1);
-
 
 		std::sort(distancesFromWanteds.begin(), distancesFromWanteds.end());
 
@@ -128,7 +115,6 @@ void USeekerComponent::DetectWantedActors()
 		UE_LOG(LogTemp, Log, TEXT("%s\n\n\n"), *AfterString);
 
 
-		//inform closesr and farthest about distance
 		AActor* ClosestActor = DetectedActors[min_element_index];
 		AActor* FarthestActor = DetectedActors[max_element_index];
 
@@ -137,7 +123,5 @@ void USeekerComponent::DetectWantedActors()
 
 		ClosestWantedComponent->ChangeDistance(min_value);
 		FarthestWantedComponent->ChangeDistance(max_value);
-		
 	}
-
 }

@@ -2,8 +2,6 @@
 
 
 #include "Camera.h"
-#include "Wanted.h"
-#include "Seeker.h"
 
 // Sets default values
 ACamera::ACamera()
@@ -38,12 +36,11 @@ void ACamera::SetupPlayerInputComponent(class UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACamera::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACamera::MoveRight);
 
-
 }
 
 void ACamera::SpawnWanted()
 {
-	UE_LOG(LogTemp, Log, TEXT("Spawn Wanted"));
+	UE_LOG(LogTemp, Log, TEXT("Wanted Spawned"));
 
 	FTransform spawnTransform = GetActorTransform();
 	spawnTransform.SetLocation(GetActorLocation() + FVector(100, 0, 0));
@@ -51,7 +48,7 @@ void ACamera::SpawnWanted()
 	FActorSpawnParameters spawnParams;
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-	GetWorld()->SpawnActor<AWanted>(MyWanted, spawnTransform, spawnParams);
+	GetWorld()->SpawnActor<AActor>(Wanted, spawnTransform, spawnParams);
 
 }
 
@@ -67,7 +64,7 @@ void ACamera::SpawnSeeker()
 		FActorSpawnParameters spawnParams;
 		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-		GetWorld()->SpawnActor<ASeeker>(MySeeker, spawnTransform, spawnParams);
+		GetWorld()->SpawnActor<AActor>(Seeker, spawnTransform, spawnParams);
 
 		isSeekerPresent = 1;
 	}
@@ -86,7 +83,6 @@ void ACamera::MoveForward(float Value)
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
@@ -99,9 +95,8 @@ void ACamera::MoveRight(float Value)
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
+
 		AddMovementInput(Direction, Value);
 	}
 }

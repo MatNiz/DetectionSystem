@@ -12,16 +12,6 @@ class ZADREKRUTACYJNE_API UWantedComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere)
-	bool isDetected = 0;
-
-	UPROPERTY(EditAnywhere)
-	float distanceFromSeeker;
-
-public:	void OnDetected();
-
-public: void ChangeDistance(float Distance);
-
 public:	
 	// Sets default values for this component's properties
 	UWantedComponent();
@@ -34,5 +24,14 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+
+	void OnDetected();
+	void ChangeDistance(float Distance);
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Properties")
+		bool IsDetected = 0;
+	UPROPERTY(EditAnywhere, Category = "Properties")
+		float DistanceFromSeeker;
+
 };

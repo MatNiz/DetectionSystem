@@ -15,33 +15,24 @@ class ZADREKRUTACYJNE_API USeekerComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	// Sets default values for this component's properties
 	USeekerComponent();
-
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+public:	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
+	UPROPERTY(EditAnywhere, Category = "Properties")
+		float DetectionDistance = 700.0;
+	UPROPERTY(EditAnywhere, Category = "Properties")
+		float DetectionIntervalInSeconds = 1.5;
 
-	UPROPERTY(EditAnywhere)
-		float DetectionDistance;
-
-	TArray<AActor*> DetectedActors;
 
 	void DetectWantedActors();
-
-
-
-	// Time interval for detecting wanted actors
-	UPROPERTY(EditAnywhere)
-		float DetectionInterval;
-
-	// Timer handle for detecting wanted actors
-	FTimerHandle DetectionTimerHandle;
-
 
 };
